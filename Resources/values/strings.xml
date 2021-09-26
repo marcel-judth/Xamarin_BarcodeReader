@@ -6,4 +6,8 @@
 	<string name="inventory_image">Inventory image</string>
 	<string name="empNr_hint">Ma-Nr:</string>
 	<string name="settings_title">Einstellungen</string>
+	<string name="save">Speichern</string>
+	<string name="ean_hint">EAN</string>
+	<string name="quantity_hint">Menge</string>
+	<string name="order_hint">Auftrag</string>
 </resources>

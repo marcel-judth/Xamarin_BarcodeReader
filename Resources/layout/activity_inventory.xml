@@ -39,25 +39,23 @@
             android:layout_marginVertical="5dp"
             android:gravity="center"
             android:id="@+id/textEAN"
-            android:hint="EAN"
+            android:hint="@string/ean_hint"
              />
         <EditText
-            android:inputType="text"
+            android:inputType="numberDecimal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:gravity="center"
             android:layout_marginVertical="5dp"
             android:id="@+id/textQty"
-            android:hint="Quantity"
-            android:text=""
-             />
+            android:hint="@string/quantity_hint"/>
+
         <Button
-            android:text="send"
+            android:text="@string/save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@android:color/black"
+            android:backgroundTint="@color/colorPrimary"
             android:id="@+id/btnSave" />
     </LinearLayout>
 

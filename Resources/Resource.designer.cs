@@ -3335,61 +3335,64 @@ namespace Xamarin_BarcodeReader
 			public const int ic_mtrl_chip_close_circle = 2131165298;
 			
 			// aapt resource value: 0x7F070073
-			public const int ic_notifications_black_24dp = 2131165299;
+			public const int ic_nav_settings = 2131165299;
 			
 			// aapt resource value: 0x7F070074
-			public const int ic_settings = 2131165300;
+			public const int ic_notifications_black_24dp = 2131165300;
 			
 			// aapt resource value: 0x7F070075
-			public const int mtrl_snackbar_background = 2131165301;
+			public const int ic_settings = 2131165301;
 			
 			// aapt resource value: 0x7F070076
-			public const int mtrl_tabs_default_indicator = 2131165302;
+			public const int mtrl_snackbar_background = 2131165302;
 			
 			// aapt resource value: 0x7F070077
-			public const int navigation_empty_icon = 2131165303;
+			public const int mtrl_tabs_default_indicator = 2131165303;
 			
 			// aapt resource value: 0x7F070078
-			public const int notification_action_background = 2131165304;
+			public const int navigation_empty_icon = 2131165304;
 			
 			// aapt resource value: 0x7F070079
-			public const int notification_bg = 2131165305;
+			public const int notification_action_background = 2131165305;
 			
 			// aapt resource value: 0x7F07007A
-			public const int notification_bg_low = 2131165306;
+			public const int notification_bg = 2131165306;
 			
 			// aapt resource value: 0x7F07007B
-			public const int notification_bg_low_normal = 2131165307;
+			public const int notification_bg_low = 2131165307;
 			
 			// aapt resource value: 0x7F07007C
-			public const int notification_bg_low_pressed = 2131165308;
+			public const int notification_bg_low_normal = 2131165308;
 			
 			// aapt resource value: 0x7F07007D
-			public const int notification_bg_normal = 2131165309;
+			public const int notification_bg_low_pressed = 2131165309;
 			
 			// aapt resource value: 0x7F07007E
-			public const int notification_bg_normal_pressed = 2131165310;
+			public const int notification_bg_normal = 2131165310;
 			
 			// aapt resource value: 0x7F07007F
-			public const int notification_icon_background = 2131165311;
+			public const int notification_bg_normal_pressed = 2131165311;
 			
 			// aapt resource value: 0x7F070080
-			public const int notification_template_icon_bg = 2131165312;
+			public const int notification_icon_background = 2131165312;
 			
 			// aapt resource value: 0x7F070081
-			public const int notification_template_icon_low_bg = 2131165313;
+			public const int notification_template_icon_bg = 2131165313;
 			
 			// aapt resource value: 0x7F070082
-			public const int notification_tile_bg = 2131165314;
+			public const int notification_template_icon_low_bg = 2131165314;
 			
 			// aapt resource value: 0x7F070083
-			public const int notify_panel_notification_icon_bg = 2131165315;
+			public const int notification_tile_bg = 2131165315;
 			
 			// aapt resource value: 0x7F070084
-			public const int tooltip_frame_dark = 2131165316;
+			public const int notify_panel_notification_icon_bg = 2131165316;
 			
 			// aapt resource value: 0x7F070085
-			public const int tooltip_frame_light = 2131165317;
+			public const int tooltip_frame_dark = 2131165317;
+			
+			// aapt resource value: 0x7F070086
+			public const int tooltip_frame_light = 2131165318;
 			
 			static Drawable()
 			{
@@ -4593,64 +4596,76 @@ namespace Xamarin_BarcodeReader
 			public const int copy_toast_msg = 2131623968;
 			
 			// aapt resource value: 0x7F0E0021
-			public const int empNr_hint = 2131623969;
+			public const int ean_hint = 2131623969;
 			
 			// aapt resource value: 0x7F0E0022
-			public const int fab_transformation_scrim_behavior = 2131623970;
+			public const int empNr_hint = 2131623970;
 			
 			// aapt resource value: 0x7F0E0023
-			public const int fab_transformation_sheet_behavior = 2131623971;
+			public const int fab_transformation_scrim_behavior = 2131623971;
 			
 			// aapt resource value: 0x7F0E0024
-			public const int fallback_menu_item_copy_link = 2131623972;
+			public const int fab_transformation_sheet_behavior = 2131623972;
 			
 			// aapt resource value: 0x7F0E0025
-			public const int fallback_menu_item_open_in_browser = 2131623973;
+			public const int fallback_menu_item_copy_link = 2131623973;
 			
 			// aapt resource value: 0x7F0E0026
-			public const int fallback_menu_item_share_link = 2131623974;
+			public const int fallback_menu_item_open_in_browser = 2131623974;
 			
 			// aapt resource value: 0x7F0E0027
-			public const int hide_bottom_view_on_scroll_behavior = 2131623975;
+			public const int fallback_menu_item_share_link = 2131623975;
 			
 			// aapt resource value: 0x7F0E0028
-			public const int inventory_image = 2131623976;
+			public const int hide_bottom_view_on_scroll_behavior = 2131623976;
 			
 			// aapt resource value: 0x7F0E0029
-			public const int mtrl_chip_close_icon_content_description = 2131623977;
+			public const int inventory_image = 2131623977;
 			
 			// aapt resource value: 0x7F0E002A
-			public const int password_toggle_content_description = 2131623978;
+			public const int mtrl_chip_close_icon_content_description = 2131623978;
 			
 			// aapt resource value: 0x7F0E002B
-			public const int path_password_eye = 2131623979;
+			public const int order_hint = 2131623979;
 			
 			// aapt resource value: 0x7F0E002C
-			public const int path_password_eye_mask_strike_through = 2131623980;
+			public const int password_toggle_content_description = 2131623980;
 			
 			// aapt resource value: 0x7F0E002D
-			public const int path_password_eye_mask_visible = 2131623981;
+			public const int path_password_eye = 2131623981;
 			
 			// aapt resource value: 0x7F0E002E
-			public const int path_password_strike_through = 2131623982;
+			public const int path_password_eye_mask_strike_through = 2131623982;
 			
 			// aapt resource value: 0x7F0E002F
-			public const int search_menu_title = 2131623983;
+			public const int path_password_eye_mask_visible = 2131623983;
 			
 			// aapt resource value: 0x7F0E0030
-			public const int settings_title = 2131623984;
+			public const int path_password_strike_through = 2131623984;
 			
 			// aapt resource value: 0x7F0E0031
-			public const int status_bar_notification_info_overflow = 2131623985;
+			public const int quantity_hint = 2131623985;
 			
 			// aapt resource value: 0x7F0E0032
-			public const int title_dashboard = 2131623986;
+			public const int save = 2131623986;
 			
 			// aapt resource value: 0x7F0E0033
-			public const int title_home = 2131623987;
+			public const int search_menu_title = 2131623987;
 			
 			// aapt resource value: 0x7F0E0034
-			public const int title_notifications = 2131623988;
+			public const int settings_title = 2131623988;
+			
+			// aapt resource value: 0x7F0E0035
+			public const int status_bar_notification_info_overflow = 2131623989;
+			
+			// aapt resource value: 0x7F0E0036
+			public const int title_dashboard = 2131623990;
+			
+			// aapt resource value: 0x7F0E0037
+			public const int title_home = 2131623991;
+			
+			// aapt resource value: 0x7F0E0038
+			public const int title_notifications = 2131623992;
 			
 			static String()
 			{

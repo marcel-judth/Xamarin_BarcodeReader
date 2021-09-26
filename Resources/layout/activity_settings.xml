@@ -58,11 +58,11 @@
             android:id="@+id/textPlace"
              />
         <Button
-            android:text="Speichern"
+            android:text="@string/save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@android:color/black"
+            android:backgroundTint="@color/colorPrimary"
             android:id="@+id/btnSave" />
     </LinearLayout>
 
