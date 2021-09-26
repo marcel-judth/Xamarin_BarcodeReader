@@ -1,0 +1,9 @@
+<resources>
+	<string name="app_name">Barcode-Reader</string>
+	<string name="title_home">Entnahme</string>
+	<string name="title_dashboard">Inventur</string>
+	<string name="title_notifications">Einstellungen</string>
+	<string name="inventory_image">Inventory image</string>
+	<string name="empNr_hint">Ma-Nr:</string>
+	<string name="settings_title">Einstellungen</string>
+</resources>
