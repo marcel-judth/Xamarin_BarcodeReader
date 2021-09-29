@@ -10,6 +10,7 @@ using Google.Android.Material.BottomNavigation;
 using Google.Android.Material.Snackbar;
 using System;
 using Xamarin.Essentials;
+using Xamarin_BarcodeReader.Code;
 
 namespace Xamarin_BarcodeReader
 {
@@ -19,6 +20,7 @@ namespace Xamarin_BarcodeReader
         string server;
         string user;
         string password;
+        private Utile utile;
 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -27,9 +29,8 @@ namespace Xamarin_BarcodeReader
 
 
             base.OnCreate(savedInstanceState);
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            Platform.Init(this, savedInstanceState);
             SetupThirdView();
-            var inputManager = (InputMethodManager)GetSystemService(InputMethodService);
         }
 
         private void SetEmpTexts()
@@ -52,11 +53,13 @@ namespace Xamarin_BarcodeReader
                 Intent intent = new Intent(this, typeof(ServerSetupActivity));
                 StartActivity(intent);
             }
+
+            utile = new Utile(server, user, password);
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
@@ -86,6 +89,8 @@ namespace Xamarin_BarcodeReader
             {
                 var Scan_Data = FindViewById<TextView>(Resource.Id.textEAN);
                 var Quantity = FindViewById<TextView>(Resource.Id.textQty);
+                var empNr = Preferences.Get("employeeNr", "MA01");
+                var pl = Preferences.Get("place", "L01");
 
                 int qty = -1;
 
@@ -96,6 +101,8 @@ namespace Xamarin_BarcodeReader
 
                 if (string.IsNullOrEmpty(Scan_Data.Text))
                     throw new Exception("Ungültige Barcodenummer!");
+
+                utile.InsertInventory(Scan_Data.Text, Quantity.Text, empNr, pl);
 
                 Quantity.Text = "";
                 Scan_Data.Text = "";
@@ -118,6 +125,8 @@ namespace Xamarin_BarcodeReader
             {
                 var Scan_Data = FindViewById<TextView>(Resource.Id.textEAN);
                 var Quantity = FindViewById<TextView>(Resource.Id.textQty);
+                var empNr = Preferences.Get("employeeNr", "MA01");
+                var pl = Preferences.Get("place", "L01");
 
                 int qty = -1;
 
@@ -128,6 +137,8 @@ namespace Xamarin_BarcodeReader
 
                 if (string.IsNullOrEmpty(Scan_Data.Text))
                     throw new Exception("Ungültige Barcodenummer!");
+
+                utile.InsertInventory(Scan_Data.Text, Quantity.Text, empNr, pl);
 
                 Quantity.Text = "";
                 Scan_Data.Text = "";
@@ -171,7 +182,7 @@ namespace Xamarin_BarcodeReader
         private void SetupSecondView()
         {
             SetContentView(Resource.Layout.activity_inventory);
-            SetupView(Resource.Id.navigation_dashboard);
+            SetupView();
             Button save = FindViewById<Button>(Resource.Id.btnSave);
             save.Click += OnSaveInventoryClick;
             FindViewById<TextView>(Resource.Id.textEAN).ShowSoftInputOnFocus = false;
@@ -183,7 +194,7 @@ namespace Xamarin_BarcodeReader
         private void SetupThirdView()
         {
             SetContentView(Resource.Layout.activity_settings);
-            SetupView(Resource.Id.navigation_notifications);
+            SetupView();
             Button save = FindViewById<Button>(Resource.Id.btnSave);
             save.Click += OnSettingsSave;
             var employeeNr = FindViewById<TextView>(Resource.Id.textEmpNr);
@@ -200,7 +211,7 @@ namespace Xamarin_BarcodeReader
 
         }
 
-        private void SetupView(int id = Resource.Id.navigation_home)
+        private void SetupView()
         {
             BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
             navigation.SetOnNavigationItemSelectedListener(this);

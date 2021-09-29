@@ -24,5 +24,15 @@ namespace Xamarin_BarcodeReader.Code
         {
             return efhandler.TestConnection();
         }
+
+        internal void InsertInventory(string eancode, string quantity, string empNr, string place)
+        {
+            efhandler.Insert(DateTime.Now, empNr, "I", place, eancode, quantity);
+        }
+
+        internal void InsertTakeaway(string eancode, string quantity, string empNr, string place)
+        {
+            efhandler.Insert(DateTime.Now, empNr, null, place, eancode, quantity);
+        }
     }
 }
