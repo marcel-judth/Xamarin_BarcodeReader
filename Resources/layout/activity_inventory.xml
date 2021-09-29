@@ -49,6 +49,20 @@
             android:layout_marginVertical="5dp"
             android:id="@+id/textQty"
             android:hint="@string/quantity_hint"/>
+        <TextView
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtEmpNr" />
+        <TextView
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtPlace" />
+
 
         <Button
             android:text="@string/save"

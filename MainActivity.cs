@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -12,22 +13,54 @@ using Xamarin.Essentials;
 
 namespace Xamarin_BarcodeReader
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true, WindowSoftInputMode = SoftInput.StateAlwaysHidden)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", WindowSoftInputMode = SoftInput.StateAlwaysHidden, MainLauncher = true)]
     public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener
     {
+        string server;
+        string user;
+        string password;
+
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            CheckServerSettings();
+
+
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            SetupMainView();
+            SetupThirdView();
             var inputManager = (InputMethodManager)GetSystemService(InputMethodService);
         }
+
+        private void SetEmpTexts()
+        {
+            var empNr = Preferences.Get("employeeNr", "MA01");
+            var pl = Preferences.Get("place", "L01");
+
+            FindViewById<TextView>(Resource.Id.txtEmpNr).Text = "Ma-Nr.: " + empNr;
+            FindViewById<TextView>(Resource.Id.txtPlace).Text = "Lagerplatz: " + pl;
+        }
+
+        private void CheckServerSettings()
+        {
+            server = Preferences.Get("server", null);
+            user = Preferences.Get("user", null);
+            password = Preferences.Get("password", null);
+
+            if (string.IsNullOrEmpty(server) || string.IsNullOrEmpty(user) || string.IsNullOrEmpty(password))
+            {
+                Intent intent = new Intent(this, typeof(ServerSetupActivity));
+                StartActivity(intent);
+            }
+        }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
         public bool OnNavigationItemSelected(IMenuItem item)
         {
             switch (item.ItemId)
@@ -48,29 +81,65 @@ namespace Xamarin_BarcodeReader
         public void OnSaveClick(object sender, EventArgs e)
         {
             View view = (View)sender;
-            var Scan_Data = FindViewById<TextView>(Resource.Id.textEAN);
-            var Quantitiy = FindViewById<TextView>(Resource.Id.textQty);
 
-            Snackbar.Make(view, "Speichern erfolgreich", Snackbar.LengthLong)
-                .SetAction("Action", (View.IOnClickListener)null).Show();
+            try
+            {
+                var Scan_Data = FindViewById<TextView>(Resource.Id.textEAN);
+                var Quantity = FindViewById<TextView>(Resource.Id.textQty);
 
-            Quantitiy.Text = "1";
-            Scan_Data.Text = "";
-            Scan_Data.RequestFocus();
+                int qty = -1;
+
+                int.TryParse(Quantity.Text, out qty);
+
+                if (qty < 1 || qty > 1000)
+                    throw new Exception("Ungültige Menge!");
+
+                if (string.IsNullOrEmpty(Scan_Data.Text))
+                    throw new Exception("Ungültige Barcodenummer!");
+
+                Quantity.Text = "";
+                Scan_Data.Text = "";
+                Scan_Data.RequestFocus();
+                Snackbar.Make(view, "Speichern erfolgreich", Snackbar.LengthLong)
+                    .SetAction("Action", (View.IOnClickListener)null).Show();
+            }
+            catch (Exception ex)
+            {
+                Snackbar.Make(view, ex.Message, Snackbar.LengthLong)
+                    .SetAction("Action", (View.IOnClickListener)null).Show();
+            }
         }
 
         public void OnSaveInventoryClick(object sender, EventArgs e)
         {
             View view = (View)sender;
-            var Scan_Data = FindViewById<TextView>(Resource.Id.textEAN);
-            var Quantitiy = FindViewById<TextView>(Resource.Id.textQty);
 
-            Snackbar.Make(view, "Speichern erfolgreich", Snackbar.LengthLong)
-                .SetAction("Action", (View.IOnClickListener)null).Show();
+            try
+            {
+                var Scan_Data = FindViewById<TextView>(Resource.Id.textEAN);
+                var Quantity = FindViewById<TextView>(Resource.Id.textQty);
 
-            Quantitiy.Text = "";
-            Scan_Data.Text = "";
-            Scan_Data.RequestFocus();
+                int qty = -1;
+
+                int.TryParse(Quantity.Text, out qty);
+
+                if (qty < 1 || qty > 1000)
+                    throw new Exception("Ungültige Menge!");
+
+                if (string.IsNullOrEmpty(Scan_Data.Text))
+                    throw new Exception("Ungültige Barcodenummer!");
+
+                Quantity.Text = "";
+                Scan_Data.Text = "";
+                Scan_Data.RequestFocus();
+                Snackbar.Make(view, "Speichern erfolgreich", Snackbar.LengthLong)
+                    .SetAction("Action", (View.IOnClickListener)null).Show();
+            }
+            catch (Exception ex)
+            {
+                Snackbar.Make(view, ex.Message, Snackbar.LengthLong)
+                    .SetAction("Action", (View.IOnClickListener)null).Show();
+            }
         }
 
         public void OnSettingsSave(object sender, EventArgs e)
@@ -94,7 +163,6 @@ namespace Xamarin_BarcodeReader
             SetupView();
             Button save = FindViewById<Button>(Resource.Id.btnSave);
             save.Click += OnSaveClick;
-
             FindViewById<TextView>(Resource.Id.textEAN).ShowSoftInputOnFocus = false;
             FindViewById<TextView>(Resource.Id.textQty).ShowSoftInputOnFocus = false;
             FindViewById<TextView>(Resource.Id.textEAN).RequestFocus();
@@ -109,6 +177,7 @@ namespace Xamarin_BarcodeReader
             FindViewById<TextView>(Resource.Id.textEAN).ShowSoftInputOnFocus = false;
             FindViewById<TextView>(Resource.Id.textQty).ShowSoftInputOnFocus = false;
             FindViewById<TextView>(Resource.Id.textEAN).RequestFocus();
+            SetEmpTexts();
         }
 
         private void SetupThirdView()
