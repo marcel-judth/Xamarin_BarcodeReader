@@ -28,7 +28,6 @@ namespace Xamarin_BarcodeReader.Code
                 UserID = user,
                 Password = password
             }.ConnectionString;
-            string connetionString = $"Data Source={server};Initial Catalog={db};User ID={user};Password={password}";
             var cnn = new SqlConnection(conString);
             try
             {
@@ -56,7 +55,15 @@ namespace Xamarin_BarcodeReader.Code
 
             try
             {
-                connection.Open();
+                try
+                {
+
+                    connection.Open();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Verbindung fehlgeschlagen! Bitte Internetverbindung überprüfen.");
+                }
 
                 string sql = "INSERT INTO DATAFOX_LAGER(DATUM_UHRZEIT, MA_ID, SATZART, AUFTRAG, EANCODE, MENGE) VALUES(@param1,@param2,@param3,@param4,@param5,@param6)";
                 using (SqlCommand cmd = new SqlCommand(sql, connection))

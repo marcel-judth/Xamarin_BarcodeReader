@@ -86,6 +86,7 @@ namespace Xamarin_BarcodeReader
         public void OnSaveClick(object sender, EventArgs e)
         {
             View view = (View)sender;
+            Button save = FindViewById<Button>(Resource.Id.btnSave);
 
             try
             {
@@ -93,7 +94,7 @@ namespace Xamarin_BarcodeReader
                 var Quantity = FindViewById<TextView>(Resource.Id.textQty);
                 var empNr = Preferences.Get("employeeNr", "MA01");
                 var pl = Preferences.Get("place", "L01");
-
+                save.Enabled = false;
                 int qty = -1;
 
                 int.TryParse(Quantity.Text, out qty);
@@ -111,20 +112,25 @@ namespace Xamarin_BarcodeReader
                 Scan_Data.RequestFocus();
                 Snackbar.Make(view, "Speichern erfolgreich", Snackbar.LengthLong)
                     .SetAction("Action", (View.IOnClickListener)null).Show();
+                save.Enabled = true;
+
             }
             catch (Exception ex)
             {
                 Snackbar.Make(view, ex.Message, Snackbar.LengthLong)
                     .SetAction("Action", (View.IOnClickListener)null).Show();
+                save.Enabled = true;
             }
         }
 
         public void OnSaveInventoryClick(object sender, EventArgs e)
         {
             View view = (View)sender;
+            Button save = FindViewById<Button>(Resource.Id.btnSave);
 
             try
             {
+                save.Enabled = false;
                 var Scan_Data = FindViewById<TextView>(Resource.Id.textEAN);
                 var Quantity = FindViewById<TextView>(Resource.Id.textQty);
                 var empNr = Preferences.Get("employeeNr", "MA01");
@@ -147,11 +153,13 @@ namespace Xamarin_BarcodeReader
                 Scan_Data.RequestFocus();
                 Snackbar.Make(view, "Speichern erfolgreich", Snackbar.LengthLong)
                     .SetAction("Action", (View.IOnClickListener)null).Show();
+                save.Enabled = true;
             }
             catch (Exception ex)
             {
                 Snackbar.Make(view, ex.Message, Snackbar.LengthLong)
                     .SetAction("Action", (View.IOnClickListener)null).Show();
+                save.Enabled = true;
             }
         }
 
