@@ -35,8 +35,9 @@ namespace Xamarin_BarcodeReader
             var server = FindViewById<TextView>(Resource.Id.txtServername);
             var user = FindViewById<TextView>(Resource.Id.txtUser);
             var password = FindViewById<TextView>(Resource.Id.txtPassword);
+            var db = FindViewById<TextView>(Resource.Id.txtDatabase);
 
-            var utile = new Utile(server.Text, user.Text, password.Text);
+            var utile = new Utile(server.Text, db.Text, user.Text, password.Text);
             if (utile.TestConnection())
                 Snackbar.Make(view, "Verbindung erfolgreich", Snackbar.LengthLong)
                 .SetAction("Action", (View.IOnClickListener)null).Show();
@@ -50,11 +51,13 @@ namespace Xamarin_BarcodeReader
             var server = FindViewById<TextView>(Resource.Id.txtServername);
             var user = FindViewById<TextView>(Resource.Id.txtUser);
             var password = FindViewById<TextView>(Resource.Id.txtPassword);
+            var db = FindViewById<TextView>(Resource.Id.txtDatabase);
 
 
             Preferences.Set("server", server.Text);
             Preferences.Set("user", user.Text);
             Preferences.Set("password", password.Text);
+            Preferences.Set("db", db.Text);
             FinishAffinity();
         }
     }

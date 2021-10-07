@@ -38,6 +38,11 @@
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
     <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <BundleAssemblies>false</BundleAssemblies>
+    <MandroidI18n>West</MandroidI18n>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -111,8 +116,8 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Data.SqlClient">
-      <Version>3.0.1</Version>
+    <PackageReference Include="System.Data.SqlClient">
+      <Version>4.8.3</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.2.0.5" />
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.0.0.1" />

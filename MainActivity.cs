@@ -20,6 +20,7 @@ namespace Xamarin_BarcodeReader
         string server;
         string user;
         string password;
+        string db;
         private Utile utile;
 
 
@@ -46,15 +47,16 @@ namespace Xamarin_BarcodeReader
         {
             server = Preferences.Get("server", null);
             user = Preferences.Get("user", null);
+            db = Preferences.Get("db", null);
             password = Preferences.Get("password", null);
 
-            if (string.IsNullOrEmpty(server) || string.IsNullOrEmpty(user) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(server) || string.IsNullOrEmpty(user) || string.IsNullOrEmpty(db) || string.IsNullOrEmpty(password))
             {
                 Intent intent = new Intent(this, typeof(ServerSetupActivity));
                 StartActivity(intent);
             }
 
-            utile = new Utile(server, user, password);
+            utile = new Utile(server, db, user, password);
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -102,7 +104,7 @@ namespace Xamarin_BarcodeReader
                 if (string.IsNullOrEmpty(Scan_Data.Text))
                     throw new Exception("Ungültige Barcodenummer!");
 
-                utile.InsertInventory(Scan_Data.Text, Quantity.Text, empNr, pl);
+                utile.InsertTakeaway(Scan_Data.Text, Quantity.Text, empNr, pl);
 
                 Quantity.Text = "";
                 Scan_Data.Text = "";

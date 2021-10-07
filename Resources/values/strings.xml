@@ -14,4 +14,6 @@
 	<string name="port_hint">Port</string>
 	<string name="user_hint">User</string>
 	<string name="password_hint">Password</string>
+	<string name="test">Test</string>
+	<string name="db_hint">DB</string>
 </resources>
