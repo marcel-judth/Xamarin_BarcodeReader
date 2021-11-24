@@ -6,10 +6,10 @@ namespace Xamarin_BarcodeReader.Code
 {
     class EFHandler
     {
-        readonly string server;
-        readonly string user;
-        readonly string password;
-        readonly string db;
+        string server;
+        string user;
+        string password;
+        string db;
 
         public EFHandler(string _server, string _db, string _user, string _password)
         {
@@ -21,6 +21,16 @@ namespace Xamarin_BarcodeReader.Code
 
         public bool TestConnection()
         {
+            //server = "HermessoDC\\hermessoSQL";
+            //db = "Hermesso_Easybase";
+            //user = "meso";
+            //password = "Her@55mes";
+
+            //server = "User-HP\\SQL2019";
+            //db = "PZE_Lind_Apo";
+            //user = "sa";
+            //password = "CWL0mes0";
+
             string conString = new SqlConnectionStringBuilder()
             {
                 DataSource = server,
@@ -57,7 +67,6 @@ namespace Xamarin_BarcodeReader.Code
             {
                 try
                 {
-
                     connection.Open();
                 }
                 catch (Exception ex)
