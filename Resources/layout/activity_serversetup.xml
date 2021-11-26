@@ -20,43 +20,9 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginVertical="5dp"
-            android:id="@+id/txtServername"
-            android:hint="@string/servername_hint"
+            android:id="@+id/txtCompanyNr"
+            android:hint="@string/companyNr_hint"
              />
-        <EditText
-            android:inputType="text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginVertical="5dp"
-            android:id="@+id/txtUser"
-            android:hint="@string/user_hint"
-             />
-        <EditText
-            android:inputType="text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginVertical="5dp"
-            android:id="@+id/txtPassword"
-            android:hint="@string/password_hint"
-             />
-        <EditText
-            android:inputType="text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginVertical="5dp"
-            android:id="@+id/txtDatabase"
-            android:hint="@string/db_hint"
-             />
-        <Button
-            android:text="@string/test"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:id="@+id/btnTest" />
         <Button
             android:text="@string/save"
             android:layout_width="match_parent"

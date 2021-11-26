@@ -17,10 +17,7 @@ namespace Xamarin_BarcodeReader
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", WindowSoftInputMode = SoftInput.StateAlwaysHidden, MainLauncher = true)]
     public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener
     {
-        string server;
-        string user;
-        string password;
-        string db;
+        string companyNr;
         private Utile utile;
 
 
@@ -45,18 +42,17 @@ namespace Xamarin_BarcodeReader
 
         private void CheckServerSettings()
         {
-            server = Preferences.Get("server", null);
-            user = Preferences.Get("user", null);
-            db = Preferences.Get("db", null);
-            password = Preferences.Get("password", null);
+            companyNr = Preferences.Get("companyNr", null);
 
-            if (string.IsNullOrEmpty(server) || string.IsNullOrEmpty(user) || string.IsNullOrEmpty(db) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(companyNr))
             {
                 Intent intent = new Intent(this, typeof(ServerSetupActivity));
                 StartActivity(intent);
             }
 
-            utile = new Utile(server, db, user, password);
+            int.TryParse(companyNr, out int result);
+
+            utile = new Utile(result);
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -90,24 +86,25 @@ namespace Xamarin_BarcodeReader
 
             try
             {
+                save.Enabled = false;
                 var Scan_Data = FindViewById<TextView>(Resource.Id.textEAN);
                 var Quantity = FindViewById<TextView>(Resource.Id.textQty);
                 var empNr = Preferences.Get("employeeNr", "MA01");
                 var pl = Preferences.Get("place", "L01");
-                save.Enabled = false;
-                int qty = -1;
 
-                int.TryParse(Quantity.Text, out qty);
+                double qty = -1;
 
-                if (qty < 1 || qty > 1000)
+                double.TryParse(Quantity.Text, out qty);
+
+                if (qty < 0 || qty > 1000)
                     throw new Exception("Ungültige Menge!");
 
                 if (string.IsNullOrEmpty(Scan_Data.Text))
                     throw new Exception("Ungültige Barcodenummer!");
 
-                utile.InsertTakeaway(Scan_Data.Text, Quantity.Text, empNr, pl);
+                utile.AddScannerData(Scan_Data.Text, qty, empNr, pl, "I");
 
-                Quantity.Text = "";
+                Quantity.Text = "1";
                 Scan_Data.Text = "";
                 Scan_Data.RequestFocus();
                 Snackbar.Make(view, "Speichern erfolgreich", Snackbar.LengthLong)
@@ -136,17 +133,17 @@ namespace Xamarin_BarcodeReader
                 var empNr = Preferences.Get("employeeNr", "MA01");
                 var pl = Preferences.Get("place", "L01");
 
-                int qty = -1;
+                double qty = -1;
 
-                int.TryParse(Quantity.Text, out qty);
+                double.TryParse(Quantity.Text, out qty);
 
-                if (qty < 1 || qty > 1000)
+                if (qty < 0 || qty > 1000)
                     throw new Exception("Ungültige Menge!");
 
                 if (string.IsNullOrEmpty(Scan_Data.Text))
                     throw new Exception("Ungültige Barcodenummer!");
 
-                utile.InsertInventory(Scan_Data.Text, Quantity.Text, empNr, pl);
+                utile.AddScannerData(Scan_Data.Text, qty, empNr, pl, "I");
 
                 Quantity.Text = "";
                 Scan_Data.Text = "";

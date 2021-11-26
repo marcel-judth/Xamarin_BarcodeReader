@@ -10,10 +10,6 @@
 	<string name="ean_hint">EAN</string>
 	<string name="quantity_hint">Menge</string>
 	<string name="order_hint">Auftrag</string>
-	<string name="servername_hint">Servername</string>
-	<string name="port_hint">Port</string>
-	<string name="user_hint">User</string>
+	<string name="companyNr_hint">Firmennummer</string>
 	<string name="password_hint">Password</string>
-	<string name="test">Test</string>
-	<string name="db_hint">DB</string>
 </resources>

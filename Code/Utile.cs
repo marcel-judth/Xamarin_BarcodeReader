@@ -1,29 +1,32 @@
 ﻿using System;
+using Xamarin_BarcodeReader.Models;
 
 namespace Xamarin_BarcodeReader.Code
 {
     class Utile
     {
-        EFHandler efhandler;
+        RESTHandler resthandler;
+        int _companyNr;
 
-        public Utile(string server, string db, string user, string password)
+        public Utile(int companyNr)
         {
-            efhandler = new EFHandler(server, db, user, password);
+            resthandler = new RESTHandler();
+            _companyNr = companyNr;
         }
 
-        public bool TestConnection()
+        internal void AddScannerData(string eancode, double quantity, string empNr, string place, string type)
         {
-            return efhandler.TestConnection();
-        }
-
-        internal void InsertInventory(string eancode, string quantity, string empNr, string place)
-        {
-            efhandler.Insert(DateTime.Now, empNr, "I", place, eancode, quantity);
-        }
-
-        internal void InsertTakeaway(string eancode, string quantity, string empNr, string place)
-        {
-            efhandler.Insert(DateTime.Now, empNr, null, place, eancode, quantity);
+            var reqObj = new RequestObject
+            {
+                companyNr = _companyNr,
+                date = DateTime.Now,
+                eanCode = eancode,
+                maID = empNr,
+                order = place,
+                quantity = quantity,
+                type = type
+            };
+            resthandler.CallRestService(reqObj);
         }
     }
 }
