@@ -32,7 +32,7 @@ namespace Xamarin_BarcodeReader.Code
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
 
-            request.AddHeader("ApiKey", "1234");
+            request.AddHeader("ApiKey", "4bc73c9a-0558-4f23-a1f9-f35bca7f826a");
             request.AddHeader("Content-Type", "application/json");
 
             var body = JsonConvert.SerializeObject(postData);

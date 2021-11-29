@@ -102,7 +102,7 @@ namespace Xamarin_BarcodeReader
                 if (string.IsNullOrEmpty(Scan_Data.Text))
                     throw new Exception("Ungültige Barcodenummer!");
 
-                utile.AddScannerData(Scan_Data.Text, qty, empNr, pl, "I");
+                utile.AddScannerData(Scan_Data.Text, qty, empNr, pl, "");
 
                 Quantity.Text = "1";
                 Scan_Data.Text = "";
